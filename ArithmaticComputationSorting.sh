@@ -2,6 +2,8 @@
 
 echo "--------Welcome To Arithmatic Compution And Sorting ----------"
 
+declare -A arithmaticOperation
+
 read -p "Enter first input :" firstInput
 read -p "Enter second input:" secondInput
 read -p "Enter third input :" thirdInput
@@ -46,8 +48,25 @@ function descendingOrderSort()
 	echo "To data descending order"${array[@]}
 }
 
+function ascendingOrderSort()
+{
+   for(( index=0; index<${#array[@]}; index ++ ))
+   do
+      for(( indexOne=0; indexOne<${#array[@]}-1; indexOne ++ ))
+      do
+         if (( $(echo "${array[indexOne+1]} < ${array[indexOne]}" | bc -l ) ))
+         then
+            temp=${array[indexOne]}
+            array[indexOne]=${array[indexOne+1]}
+            array[indexOne+1]=$temp
+         fi
+      done
+   done
+   echo "To data ascending order:"${array[@]}
+}
 function main()
 {
-descendingOrderSort
+descendingOrderSort ${array[@]}
+ascendingOrderSort ${array[@]}
 }
 main
