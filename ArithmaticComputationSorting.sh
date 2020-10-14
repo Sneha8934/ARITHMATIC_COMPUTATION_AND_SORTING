@@ -22,3 +22,9 @@ arithmaticOperation[result]=$result
 arithmaticOperation[resultOne]=$resultOne
 arithmaticOperation[resultTwo]=$resultTwo
 arithmaticOperation[resultThree]=$resultThree
+
+for((index=0; index<=${#arithmaticOperation[@]}; index++))
+do
+  array[index]=${arithmaticOperation[result$((index+1))]}
+done
+echo "${array[@]}"
